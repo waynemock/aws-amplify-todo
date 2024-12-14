@@ -10,7 +10,7 @@ function deleteTodo(id: string) {
 }
 
 function App() {
-  const { signOut } = useAuthenticator();
+  const { signOut, user } = useAuthenticator();
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <main>
-      <h1>My todos</h1>
+      <h1>{user?.signInDetails?.loginId}'s todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
@@ -41,7 +41,7 @@ function App() {
           Review next step of this tutorial.
         </a>
       </div>
-      <button onClick={signOut}>Sign out</button>
+      <button onClick={signOut}>Sign out!</button>
     </main>
   );
 }
